@@ -4,8 +4,8 @@ Pull requests always gonna be welcomed
 
 ## How to play
 
-Arrow left <-- to move to the left
-Arrow right --> to move to the right
-Arrow down      to move to the down
+Arrow left <-- to move to the left. 
+Arrow right --> to move to the right. 
+Arrow down      to move to the down. 
 
 Q / W keys to rotate 
