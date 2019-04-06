@@ -125,6 +125,7 @@ function playerDrop(){
     dropCounter=0;
 }
 
+
 function playerMove(dir){
     player.pos.x+=dir;
     if (colision(arena,player)){
