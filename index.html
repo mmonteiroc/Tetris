@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Tetris</title>
 
     <style>
         body{
+            display: flex;
+            justify-content: space-evenly;
+            vertical-align: center;
             background-color: #202028;
             color: aliceblue;
             font-family: sans-serif;
@@ -16,20 +19,56 @@
             border: solid .2em white;
             height: 90vh    ;
         }
+
+        canvas#proxpiece {
+            width: 20vw;
+            height: 35vh;
+        }
+
+        h1 {
+            font-size: 0.9em;
+        }
+
+        div > ul {
+            width: 20vw;
+            font-size: 20px;
+        }
     </style>
 
 </head>
 <body>
-<div id="score">
 
-</div>
-<canvas id="tetris" width="240" height="400">
+<section>
+    <div id="score">
 
-</canvas>
+    </div>
+    <canvas id="tetris" width="240" height="400">
+
+    </canvas>
+
+</section>
+
+<section>
+    <div>
+        <h1>Proxima pieza</h1>
+        <canvas id="proxpiece"></canvas>
+    </div>
+    <div>
+        <h1>How to play</h1>
+
+        <ul>
+            <li>Use left and right arrow to move to the sides.</li>
+            <li>Use the down arrow to accelerate.</li>
+            <li>Use Q / W keys to rotate the piece.</li>
+        </ul>
+
+    </div>
+
+</section>
+
 <audio autoplay loop>
     <source src="assets/tetris-theme-song-trap-remix%20(1).ogg">
     <source src="assets/tetris-theme-song-trap-remix.mp3">
-
 </audio>
 
 <script src="game.js"></script>

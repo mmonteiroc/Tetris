@@ -119,8 +119,7 @@ function draw() {
     context.fillRect(0,0,canvas.width, canvas.height);
 
     drawMatrix(arena, {x:0,y:0});
-
-    drawMatrix(player.matrix,player.pos);
+    drawMatrix(player.matrix, player.pos, player.matrix2);
 }
 
 function drawMatrix(matrix,offset){
@@ -173,6 +172,7 @@ function playerMove(dir){
 function playerReset() {
     const pieces = 'ILJOTSZ';
     player.matrix=createPiece(pieces[pieces.length * Math.random() | 0]);
+
     player.pos.y=0;
     player.pos.x = (arena[0].length/2 | 0) - (player.matrix[0].length/2 | 0);
 
