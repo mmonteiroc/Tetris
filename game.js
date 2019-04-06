@@ -1,11 +1,37 @@
+/*
+* Code created by Miguel Monteiro Claveri
+*
+* Following this tutorial:
+* https://www.youtube.com/watch?v=H2aW5V46khA&t
+* */
+
+
 const canvas = document.querySelector('#tetris');
-
 const context = canvas.getContext('2d');
-
 context.scale(20,20);
 
 
 
+
+function arenaSweep(){
+
+    outer: for (let y = arena.length - 1; y > 0 ; --y) {
+        let rowCount = 1;
+                for (let x = 0; x < arena[y].length; x++) {
+                    if (arena[y][x]===0){
+                        continue outer;
+                    }
+                }
+
+                const row = arena.splice(y,1)[0].fill(0);
+                arena.unshift(row);
+                ++y;
+
+                player.score+=rowCount*10;
+                rowCount*=2;
+    }
+
+}
 
 function colision(arena,player) {
     const [m, o] = [player.matrix, player.pos];
@@ -31,6 +57,10 @@ function createMatrix(w,h) {
 }
 
 
+
+/*
+* This function create a random Piece of tretis
+* */
 function createPiece(type) {
     if (type==='T'){
         return [
@@ -77,7 +107,11 @@ function createPiece(type) {
     }
 }
 
-
+/*
+* This function its created to draw
+* everything relationed with our game
+*
+* */
 function draw() {
 
     // We clear the canvas
@@ -121,6 +155,8 @@ function playerDrop(){
         player.pos.y--;
         merge(arena,player);
         playerReset();
+        arenaSweep();
+        updateScore();
     }
     dropCounter=0;
 }
@@ -142,6 +178,8 @@ function playerReset() {
 
     if (colision(arena,player)){
         arena.forEach(row=>row.fill(0));
+        player.score=0;
+        updateScore();
     }
 }
 
@@ -164,7 +202,6 @@ function playerRotate(dir) {
 function rotate(matrix, dir){
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x <y; x++) {
-
             [
                 matrix[x][y],
                 matrix[y][x],
@@ -199,6 +236,11 @@ function update(time = 0) {
     requestAnimationFrame(update);
 }
 
+
+function updateScore() {
+    document.querySelector('#score').innerHTML=player.score;
+}
+
 const colors = [
     null,
     'blue',
@@ -215,8 +257,9 @@ const arena = createMatrix(12,20);
 
 
 const player = {
-    pos:{x: 5,y: 5},
-    matrix: createPiece('T')
+    pos:{x: 0,y: 0},
+    matrix: null,
+    score:0
 };
 
 
@@ -243,5 +286,6 @@ document.addEventListener('keydown',event=>{
 
 });
 
-
+playerReset();
+updateScore();
 update();
