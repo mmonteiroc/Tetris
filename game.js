@@ -238,7 +238,7 @@ function update(time = 0) {
 
 
 function updateScore() {
-    document.querySelector('#score').innerHTML=player.score;
+    document.querySelector('#score').innerHTML = "Score: " + player.score;
 }
 
 const colors = [
